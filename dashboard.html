@@ -155,7 +155,7 @@ footer{margin-top:34px;font-size:11.5px;color:var(--muted)}
   </nav>
   <div class="side-foot">
     <b>Seaview Villa</b>Mirissa · 4 bedrooms
-    <div class="duty"><i></i>Gayan on duty, 24/7</div>
+    <div class="duty"><i></i>Nuwan on duty, 24/7</div>
     <button class="linkbtn" id="resetBtn" type="button">Reset demo</button>
   </div>
 </aside>
@@ -166,7 +166,7 @@ footer{margin-top:34px;font-size:11.5px;color:var(--muted)}
       <div class="eyebrow" id="today">Seaview Villa</div>
       <h1 id="title">Your villa, <em>handled</em></h1>
     </div>
-    <button class="btn" id="callBtn" type="button"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span>Test call with Gayan</span></button>
+    <button class="btn" id="callBtn" type="button"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span>Test call with Nuwan</span></button>
   </div>
 
   <!-- OVERVIEW -->
@@ -175,7 +175,7 @@ footer{margin-top:34px;font-size:11.5px;color:var(--muted)}
       <div class="kpi"><span>Open alerts</span><b class="num" id="kOpen">0</b><small id="kUrgent">None urgent</small></div>
       <div class="kpi"><span>Extras requested</span><b class="num" id="kExtras">Rs 0</b><small id="kExtrasN">0 requests</small></div>
       <div class="kpi"><span>Guests in house</span><b class="num" id="kGuests">0</b><small id="kArr">0 arriving today</small></div>
-      <div class="kpi"><span>Calls handled</span><b class="num" id="kCalls">0</b><small>By Gayan today</small></div>
+      <div class="kpi"><span>Calls handled</span><b class="num" id="kCalls">0</b><small>By Nuwan today</small></div>
     </div>
     <div class="cols section">
       <div>
@@ -187,7 +187,7 @@ footer{margin-top:34px;font-size:11.5px;color:var(--muted)}
         <div class="panel call">
           <div class="callrow">
             <div class="avatar"><img src="leona-shield-white.png" alt=""></div>
-            <div><b>Gayan<span class="meter" id="meter" hidden><i></i><i></i><i></i><i></i><i></i></span></b><span id="callSub">Digital concierge · answering guests</span></div>
+            <div><b>Nuwan<span class="meter" id="meter" hidden><i></i><i></i><i></i><i></i><i></i></span></b><span id="callSub">Digital concierge · answering guests</span></div>
           </div>
           <div class="transcript" id="transcript"><div class="empty" id="trEmpty"><b>No call in progress</b>The conversation appears here live.</div></div>
           <div class="summary" id="summary" hidden>
@@ -245,7 +245,7 @@ footer{margin-top:34px;font-size:11.5px;color:var(--muted)}
     </div>
   </section>
 
-  <footer>Demo for Leona Properties. Seaview Villa and its guests are sample data. Gayan is a digital assistant. &copy; 2026 Leona Group (Pvt) Ltd. All rights reserved.</footer>
+  <footer>Demo for Leona Properties. Seaview Villa and its guests are sample data. Nuwan is a digital assistant. &copy; 2026 Leona Group (Pvt) Ltd. All rights reserved.</footer>
 </main>
 
 <div class="toast" id="toast" role="status" aria-live="polite"><b id="toastT"></b><span id="toastM"></span></div>
@@ -302,7 +302,7 @@ function alertItem(a,compact){
     <div class="tags"><span class="tag ${a.kind}">${kindLabel[a.kind]}</span>${a.morning?'<span class="tag info">For the morning</span>':""}${m.done?'<span class="tag status">Done</span>':""}${m.assignee?`<span class="assignee">Assigned to ${esc(m.assignee)}</span>`:""}</div>
     <div class="actions">
       ${m.done?`<button class="btn ghost sm" data-act="reopen">Reopen</button>`:`<button class="btn sm" data-act="done">Mark done</button>`}
-      ${!m.done&&!m.assignee?`<button class="btn ghost sm" data-act="assign">Send Nuwan</button>`:""}
+      ${!m.done&&!m.assignee?`<button class="btn ghost sm" data-act="assign">Send Gayan</button>`:""}
     </div></li>`;
 }
 let kindF="all",stateF="open";
@@ -320,7 +320,7 @@ function render(){
   $("kCalls").textContent=calls;
 
   const ov=open.slice(0,4);
-  $("ovAlerts").innerHTML=ov.length?ov.map(a=>alertItem(a,true)).join(""):`<li class="empty"><b>Nothing needs you right now</b>Gayan is handling guest questions. Problems and extras appear here.</li>`;
+  $("ovAlerts").innerHTML=ov.length?ov.map(a=>alertItem(a,true)).join(""):`<li class="empty"><b>Nothing needs you right now</b>Nuwan is handling guest questions. Problems and extras appear here.</li>`;
 
   const list=alerts.filter(a=>(kindF==="all"||a.kind===kindF)&&(stateF==="all"||(stateF==="done")===!!M(a.id).done));
   $("allAlerts").innerHTML=list.length?list.map(a=>alertItem(a)).join(""):`<li class="empty"><b>No alerts here</b>Try another filter.</li>`;
@@ -336,7 +336,7 @@ function render(){
       <td class="num">${hhmm(a.time)}</td><td class="amt num">${a.amount?rs(a.amount):"-"}</td>
       <td><label class="sr" hidden for="x${a.id}">Status</label><select class="status" id="x${a.id}" data-x="${a.id}">
         ${["Requested","Confirmed","Completed","Cancelled"].map(s=>`<option ${s===st(a)?"selected":""}>${s}</option>`).join("")}</select></td></tr>`).join("")
-    :`<tr><td colspan="5" class="empty"><b>No extras yet</b>When Gayan books an airport pickup, tour or late checkout, it shows here.</td></tr>`;
+    :`<tr><td colspan="5" class="empty"><b>No extras yet</b>When Nuwan books an airport pickup, tour or late checkout, it shows here.</td></tr>`;
 
   $("guestsBody").innerHTML=guests.map(g=>`<tr><td>${g.room}</td><td>${esc(g.name)}<span class="sub">${g.from}</span></td><td>${g.lang}</td><td class="num">${g.stay}</td>
     <td><span class="pill ${/arriving/i.test(g.today)?"arr":/out/i.test(g.today)?"out":""}">${g.today}</span></td></tr>`).join("");
@@ -348,7 +348,7 @@ document.addEventListener("click",e=>{
   const id=b.closest("[data-id]").dataset.id,m=M(id);
   if(b.dataset.act==="done"){m.done=true;toast("Marked as done","");}
   if(b.dataset.act==="reopen"){m.done=false;}
-  if(b.dataset.act==="assign"){m.assignee="Nuwan";toast("Sent to Nuwan","The caretaker has been asked to handle it.");}
+  if(b.dataset.act==="assign"){m.assignee="Gayan";toast("Sent to Gayan","The caretaker has been asked to handle it.");}
   save();render();
 });
 document.addEventListener("change",e=>{const s=e.target.closest("[data-x]");if(!s)return;M(s.dataset.x).xstatus=s.value;save();render();});
@@ -373,9 +373,9 @@ let tt;function toast(t,m){$("toastT").textContent=t;$("toastM").textContent=m;$
 let convo=null,callStart=0,callAlerts=[],tick=0,raf=0,mode="";
 const bars=[...$("meter").children];
 const fmt=s=>`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
-function tline(who,text){if(!text)return;$("trEmpty")?.remove();const el=document.createElement("div");el.className="tline "+who;el.innerHTML=`<small>${who==="ai"?"Gayan":"Guest"}</small>`;el.append(text);$("transcript").append(el);$("transcript").scrollTop=1e9;}
+function tline(who,text){if(!text)return;$("trEmpty")?.remove();const el=document.createElement("div");el.className="tline "+who;el.innerHTML=`<small>${who==="ai"?"Nuwan":"Guest"}</small>`;el.append(text);$("transcript").append(el);$("transcript").scrollTop=1e9;}
 async function level(){if(!convo)return;try{const v=Math.max(await convo.getOutputVolume(),(await convo.getInputVolume())*.7);bars.forEach((b,i)=>b.style.height=Math.max(3,Math.min(12,3+v*[.5,.8,1,.8,.5][i]*24))+"px");}catch(e){}raf=requestAnimationFrame(level);}
-function setCallBtn(on){const b=$("callBtn");b.classList.toggle("end",on);b.querySelector("span").textContent=on?"End call":"Test call with Gayan";}
+function setCallBtn(on){const b=$("callBtn");b.classList.toggle("end",on);b.querySelector("span").textContent=on?"End call":"Test call with Nuwan";}
 async function startCall(){
   const b=$("callBtn");b.disabled=true;$("callState").textContent="Connecting";
   if(location.hash&&location.hash!=="#overview")location.hash="#overview";
@@ -396,7 +396,7 @@ function endCall(){
   $("summary").hidden=false;$("sDur").textContent=dur;
   const maxP=callAlerts.length?Math.max(...callAlerts.map(a=>a.priority)):0;
   $("sUrg").textContent=maxP>=5?"Urgent":maxP>=4?"Needs attention":callAlerts.length?"Normal":"None";
-  $("sAlerts").textContent=callAlerts.length?callAlerts.map(a=>a.title).join(", "):"None, handled by Gayan";
+  $("sAlerts").textContent=callAlerts.length?callAlerts.map(a=>a.title).join(", "):"None, handled by Nuwan";
   const ex=callAlerts.filter(a=>a.kind==="extra");
   $("sExtras").textContent=ex.length?ex.map(a=>a.amount?`${a.title} (${rs(a.amount)})`:a.title).join(", "):"None";
   callStart=0;
